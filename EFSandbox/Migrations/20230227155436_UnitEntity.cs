@@ -17,25 +17,25 @@ namespace EFSandbox.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ContainerId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
-                    ParentId = table.Column<int>(type: "integer", nullable: false)
+                    Type = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Units", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Units_Containers_ParentId",
-                        column: x => x.ParentId,
+                        name: "FK_Units_Containers_ContainerId",
+                        column: x => x.ContainerId,
                         principalTable: "Containers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Units_ParentId",
+                name: "IX_Units_ContainerId",
                 table: "Units",
-                column: "ParentId");
+                column: "ContainerId");
         }
 
         /// <inheritdoc />

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EFSandbox.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230227124540_UnitEntity")]
+    [Migration("20230227155436_UnitEntity")]
     partial class UnitEntity
     {
         /// <inheritdoc />
@@ -49,12 +49,12 @@ namespace EFSandbox.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ContainerId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("ParentId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -62,20 +62,18 @@ namespace EFSandbox.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ContainerId");
 
                     b.ToTable("Units");
                 });
 
             modelBuilder.Entity("EFSandbox.Models.Unit", b =>
                 {
-                    b.HasOne("EFSandbox.Models.Container", "Parent")
+                    b.HasOne("EFSandbox.Models.Container", null)
                         .WithMany("Units")
-                        .HasForeignKey("ParentId")
+                        .HasForeignKey("ContainerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("EFSandbox.Models.Container", b =>

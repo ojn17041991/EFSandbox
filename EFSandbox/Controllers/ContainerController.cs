@@ -15,10 +15,13 @@ namespace EFSandbox.Controllers
             this.context = context;
         }
 
-        [HttpGet("{id}")]
-        public object Get(int id)
+        [HttpGet("{containerId}")]
+        public object Get(int containerId)
         {
-            return context.Units.Where(u => u.ParentId == id);
+            Container container = context.Containers.Single(c => c.Id == containerId);
+            List<Unit> units = context.Units.Where(u => u.ContainerId == containerId).ToList();
+            container.Units = units;
+            return container;
         }
 
         //[HttpPost]
