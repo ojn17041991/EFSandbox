@@ -1,6 +1,7 @@
 ﻿using EFSandbox.Data;
 using EFSandbox.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace EFSandbox.Controllers
 {
@@ -18,16 +19,24 @@ namespace EFSandbox.Controllers
         [HttpGet("{containerId}")]
         public object Get(int containerId)
         {
-            Container container = context.Containers.Single(c => c.Id == containerId);
+            return getPopulatedContainer(containerId);
+        }
+
+        [HttpPost]
+        public object Post([FromBody] Unit unit)
+        {
+            context.Units.Add(unit);
+            context.SaveChanges();
+
+            return getPopulatedContainer(unit.ContainerId);
+        }
+
+        private Models.Container getPopulatedContainer(int containerId)
+        {
+            Models.Container container = context.Containers.Single(c => c.Id == containerId);
             List<Unit> units = context.Units.Where(u => u.ContainerId == containerId).ToList();
             container.Units = units;
             return container;
         }
-
-        //[HttpPost]
-        //public string Post([FromBody] Unit unit)
-        //{
-
-        //}
     }
 }
