@@ -1257,11 +1257,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Oliver\\source\\repos\\EFSandbox\\EFSandbox\\EFSandbox.csproj",
+      "projectUniqueName": "C:\\Users\\Oliver\\source\\repos\\GITSandbox\\EFSandbox\\EFSandbox.csproj",
       "projectName": "EFSandbox",
-      "projectPath": "C:\\Users\\Oliver\\source\\repos\\EFSandbox\\EFSandbox\\EFSandbox.csproj",
+      "projectPath": "C:\\Users\\Oliver\\source\\repos\\GITSandbox\\EFSandbox\\EFSandbox.csproj",
       "packagesPath": "C:\\Users\\Oliver\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Oliver\\source\\repos\\EFSandbox\\EFSandbox\\obj\\",
+      "outputPath": "C:\\Users\\Oliver\\source\\repos\\GITSandbox\\EFSandbox\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Oliver\\AppData\\Roaming\\NuGet\\NuGet.Config",

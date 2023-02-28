@@ -31,6 +31,8 @@ namespace EFSandbox.Controllers
             return getPopulatedContainer(unit.ContainerId);
         }
 
+        // Hello world!
+
         private Models.Container getPopulatedContainer(int containerId)
         {
             Models.Container container = context.Containers.Single(c => c.Id == containerId);
